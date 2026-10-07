@@ -1,0 +1,17 @@
+ID|Topic|Question|A|B|C|D|Answer|Difficulty
+1|Java|Who developed Java?|James Gosling|Dennis Ritchie|Guido van Rossum|Bjarne Stroustrup|A|EASY
+2|Java|Which keyword is used to create an object?|new|class|object|create|A|EASY
+3|OOP|Which concept hides implementation details?|Inheritance|Abstraction|Polymorphism|Compilation|B|EASY
+4|Collections|Which collection does not allow duplicate elements?|ArrayList|HashSet|LinkedList|Vector|B|EASY
+5|Exceptions|Which block handles an exception?|try|catch|throw|final|B|EASY
+6|Streams|Which method converts a stream into a result list in modern Java?|collect|scan|convert|store|A|EASY
+7|OOP|Which concept allows one interface to have many implementations?|Encapsulation|Polymorphism|Compilation|Package|B|MEDIUM
+8|Java|Which keyword prevents a class from being inherited?|static|abstract|final|private|C|MEDIUM
+9|Collections|Average lookup in a HashMap is generally:|O(1)|O(n)|O(log n)|O(n²)|A|MEDIUM
+10|Exceptions|Which keyword explicitly raises an exception?|throws|throw|catch|error|B|MEDIUM
+11|Streams|Which operation filters stream elements?|map|filter|reduce|forEach|B|MEDIUM
+12|Threads|Which interface can be used to define a task for a thread?|Runnable|Serializable|Comparable|Cloneable|A|MEDIUM
+13|Java|Which feature was introduced as a standard feature in Java 16?|Records|Packages|Primitive types|Constructors|A|HARD
+14|Threads|Virtual threads became a final feature in which Java release?|Java 8|Java 11|Java 17|Java 21|D|HARD
+15|Streams|Which stream operation combines elements into one value?|filter|map|reduce|peek|C|HARD
+16|OOP|Which mechanism is used when a subclass provides its own implementation of a superclass method?|Overloading|Overriding|Hiding|Casting|B|HARD
