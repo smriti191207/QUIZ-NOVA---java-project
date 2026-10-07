@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizNova - Adaptive Quiz System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+<div id="loginPage" class="login-page">
+    <div class="login-box">
+        <div class="logo">Q</div>
+        <h1>QuizNova</h1>
+        <p>Adaptive Timed Quiz System</p>
+
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+
+        <button class="primary-btn" onclick="login()">Login</button>
+
+        <p id="loginMessage" class="error"></p>
+
+        <div class="demo-login">
+            <b>Demo Credentials</b><br>
+            Student: smriti / 123<br>
+            Admin: admin / admin
+        </div>
+    </div>
+</div>
+
+
+<!-- ================= APPLICATION ================= -->
+<div id="app" class="app hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-logo">Q</div>
+            <div>
+                <h2>QuizNova</h2>
+                <span>Adaptive Quiz System</span>
+            </div>
+        </div>
+
+        <div class="user-box">
+            <div class="avatar" id="sideAvatar">S</div>
+            <div>
+                <strong id="sideUsername">Smriti</strong>
+                <small id="sideRole">Student</small>
+            </div>
+        </div>
+
+        <nav>
+            <button class="nav-item active" onclick="showSection('dashboard', this)">
+                🏠 Dashboard
+            </button>
+
+            <button class="nav-item student-only" onclick="showSection('quiz', this)">
+                📝 Adaptive Quiz
+            </button>
+
+            <button class="nav-item student-only" onclick="showSection('performance', this)">
+                📊 Performance
+            </button>
+
+            <button class="nav-item" onclick="showSection('results', this)">
+                📋 Results
+            </button>
+
+            <button class="nav-item admin-only" onclick="showSection('questions', this)">
+                ⚙ Question Bank
+            </button>
+        </nav>
+
+        <button class="logout-btn" onclick="logout()">↪ Logout</button>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- ================= DASHBOARD ================= -->
+        <section id="dashboard" class="section active-section">
+
+            <div class="top-bar">
+                <div>
+                    <h1 id="welcomeTitle">Welcome, Smriti 👋</h1>
+                    <p>Your adaptive learning dashboard</p>
+                </div>
+
+                <div class="role-badge" id="roleBadge">
+                    STUDENT
+                </div>
+            </div>
+
+
+            <!-- STUDENT DASHBOARD -->
+            <div id="studentDashboard">
+
+                <div class="cards">
+
+                    <div class="card">
+                        <span>Overall Score</span>
+                        <h2>85%</h2>
+                        <small>Good performance</small>
+                    </div>
+
+                    <div class="card">
+                        <span>Accuracy</span>
+                        <h2>88%</h2>
+                        <small>Across all quizzes</small>
+                    </div>
+
+                    <div class="card">
+                        <span>Current Difficulty</span>
+                        <h2 id="currentDifficultyCard">Medium</h2>
+                        <small>Adaptive level</small>
+                    </div>
+
+                    <div class="card">
+                        <span>Average Time</span>
+                        <h2>06:32</h2>
+                        <small>Per quiz</small>
+                    </div>
+
+                </div>
+
+
+                <div class="grid-2">
+
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h2>Topic-wise Performance</h2>
+                        </div>
+
+                        <div class="progress-item">
+                            <span>Java</span>
+                            <div class="progress">
+                                <div style="width:92%"></div>
+                            </div>
+                            <b>92%</b>
+                        </div>
+
+                        <div class="progress-item">
+                            <span>OOP</span>
+                            <div class="progress">
+                                <div style="width:78%"></div>
+                            </div>
+                            <b>78%</b>
+                        </div>
+
+                        <div class="progress-item">
+                            <span>Collections</span>
+                            <div class="progress">
+                                <div style="width:88%"></div>
+                            </div>
+                            <b>88%</b>
+                        </div>
+
+                        <div class="progress-item">
+                            <span>Exceptions</span>
+                            <div class="progress">
+                                <div style="width:75%"></div>
+                            </div>
+                            <b>75%</b>
+                        </div>
+                    </div>
+
+
+                    <div class="panel recommendation">
+                        <h2>Adaptive Recommendation</h2>
+                        <div class="recommendation-box">
+                            <span>🤖</span>
+                            <div>
+                                <strong>Focus on Exception Handling</strong>
+                                <p>
+                                    Your recent performance shows that
+                                    Exception Handling needs improvement.
+                                </p>
+                            </div>
+                        </div>
+
+                        <button class="primary-btn"
+                                onclick="openQuizFromDashboard()">
+                            Start Adaptive Quiz
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ADMIN DASHBOARD -->
+            <div id="adminDashboard" class="hidden">
+
+                <div class="cards">
+
+                    <div class="card">
+                        <span>Total Questions</span>
+                        <h2>30</h2>
+                        <small>Question bank</small>
+                    </div>
+
+                    <div class="card">
+                        <span>Students</span>
+                        <h2>1</h2>
+                        <small>Registered users</small>
+                    </div>
+
+                    <div class="card">
+                        <span>Quiz Attempts</span>
+                        <h2>12</h2>
+                        <small>Total attempts</small>
+                    </div>
+
+                    <div class="card">
+                        <span>Average Score</span>
+                        <h2>85%</h2>
+                        <small>All students</small>
+                    </div>
+
+                </div>
+
+                <div class="panel">
+                    <h2>Administrator Controls</h2>
+
+                    <div class="admin-actions">
+
+                        <button onclick="showSectionById('questions')">
+                            ⚙ Manage Question Bank
+                        </button>
+
+                        <button onclick="showSectionById('results')">
+                            📋 View Student Results
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= QUIZ ================= -->
+        <section id="quiz" class="section">
+
+            <div class="top-bar">
+                <div>
+                    <h1>Adaptive Quiz</h1>
+                    <p>Questions automatically change difficulty based on your answers.</p>
+                </div>
+
+                <div class="difficulty-display">
+                    Difficulty:
+                    <strong id="difficultyText">EASY</strong>
+                </div>
+            </div>
+
+
+            <div class="quiz-container">
+
+                <div class="quiz-top">
+                    <span id="questionNumber">Question 1 of 10</span>
+
+                    <div class="timer">
+                        ⏱ <span id="timer">10</span>s
+                    </div>
+                </div>
+
+
+                <div class="question-card">
+
+                    <span class="topic-label" id="topicLabel">
+                        Java
+                    </span>
+
+                    <h2 id="questionText">
+                        What is the default value of an int variable in Java?
+                    </h2>
+
+                    <div id="optionsContainer">
+
+                        <button class="option" onclick="selectOption(this, 0)">
+                            A. 0
+                        </button>
+
+                        <button class="option" onclick="selectOption(this, 1)">
+                            B. 1
+                        </button>
+
+                        <button class="option" onclick="selectOption(this, 2)">
+                            C. null
+                        </button>
+
+                        <button class="option" onclick="selectOption(this, 3)">
+                            D. -1
+                        </button>
+
+                    </div>
+
+                    <button class="primary-btn submit-answer"
+                            onclick="submitAnswer()">
+                        Submit Answer
+                    </button>
+
+                    <p id="quizFeedback"></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PERFORMANCE ================= -->
+        <section id="performance" class="section">
+
+            <div class="top-bar">
+                <div>
+                    <h1>Performance Analysis</h1>
+                    <p>Track your learning progress.</p>
+                </div>
+            </div>
+
+            <div class="performance-panel">
+
+                <div class="score-circle">
+                    <span>85%</span>
+                    <small>Overall</small>
+                </div>
+
+                <div>
+                    <h2>Good Performance</h2>
+                    <p>
+                        You are performing well in Java and Collections.
+                        More practice is recommended for Exception Handling.
+                    </p>
+
+                    <div class="analysis-item">
+                        <span>Strong Area</span>
+                        <b>Java</b>
+                    </div>
+
+                    <div class="analysis-item">
+                        <span>Needs Improvement</span>
+                        <b>Exception Handling</b>
+                    </div>
+
+                    <div class="analysis-item">
+                        <span>Recommended Level</span>
+                        <b>Medium → Hard</b>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= RESULTS ================= -->
+        <section id="results" class="section">
+
+            <div class="top-bar">
+                <div>
+                    <h1>Quiz Results</h1>
+                    <p>View previous quiz attempts.</p>
+                </div>
+            </div>
+
+            <div class="panel">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Correct</th>
+                            <th>Total</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="resultsTable">
+
+                        <tr>
+                            <td>06 Oct 2026</td>
+                            <td>9</td>
+                            <td>10</td>
+                            <td><strong>90%</strong></td>
+                        </tr>
+
+                        <tr>
+                            <td>04 Oct 2026</td>
+                            <td>8</td>
+                            <td>10</td>
+                            <td><strong>80%</strong></td>
+                        </tr>
+
+                        <tr>
+                            <td>02 Oct 2026</td>
+                            <td>85</td>
+                            <td>100</td>
+                            <td><strong>85%</strong></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= QUESTION BANK ================= -->
+        <section id="questions" class="section">
+
+            <div class="top-bar">
+                <div>
+                    <h1>Question Bank</h1>
+                    <p>Administer the adaptive question database.</p>
+                </div>
+            </div>
+
+            <div class="panel">
+
+                <div class="admin-actions">
+                    <button onclick="addDemoQuestion()">
+                        ＋ Add Question
+                    </button>
+
+                    <button onclick="alert('Question search module ready.')">
+                        🔍 Search Questions
+                    </button>
+                </div>
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Topic</th>
+                            <th>Question</th>
+                            <th>Difficulty</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="questionBankTable">
+
+                        <tr>
+                            <td>Java</td>
+                            <td>What is the default value of int?</td>
+                            <td><span class="easy">EASY</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>OOP</td>
+                            <td>What is inheritance?</td>
+                            <td><span class="medium">MEDIUM</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Collections</td>
+                            <td>Which interface represents a list?</td>
+                            <td><span class="hard">HARD</span></td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
